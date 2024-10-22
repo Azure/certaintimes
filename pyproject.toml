@@ -1,0 +1,66 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Highly Confidential Material
+[tool.poetry]
+name = "certaintimes"
+version = "0.4.1"
+description = "certaintimes - log UTC times of user actions/observations"
+
+readme = 'README.md'
+
+authors = ["Mark Rutter <mark.rutter@metaswitch.com>"]
+
+keywords = []
+
+[tool.poetry.scripts]
+certaintimes = "certaintimes.scripts.certaintimes:main"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pyyaml = "^6.0"
+setuptools = "^75.0.0"
+
+# For `tox` testing, you must provide all test requirements as optional
+# requirements in `dependencies` and in `extras.test` section.
+# For testing via `poetry run pytest` they must also be as mandatory
+# requirements in `dev-dependencies`.
+pytest = { version = "^8.0.0", optional = true }
+pytest-subtests = { version = "^0.13.0", optional = true }
+coverage = { version = "^7.0.0", optional = true }
+pytest-cov = { version = "^5.0.0", optional = true }
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.0.0"
+pytest-subtests = "^0.13.0"
+coverage = "^7.0.0"
+pytest-cov = "^5.0.0"
+python-static-checks = "^4.0.0"
+mypy = "^1.0.0"
+poetryup = "^0.12.0"
+
+[tool.poetry.extras]
+# For `tox` testing, you must provide all test requirements as optional
+# requirements in `dependencies` and in `extras.test` section.
+# For testing via `poetry run pytest` they must also be as mandatory
+# requirements in `dev-dependencies`.
+test = ["pytest", "pytest-subtests", "pytest-cov", "coverage"]
+
+[tool.pytest]
+mock_use_standalone_module = true
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"
+
+[tool.isort]
+# Black compatible settings
+# see https://github.com/psf/black#the-black-code-style
+multi_line_output=3
+include_trailing_comma=true
+force_grid_wrap=0
+use_parentheses=true
+line_length=88
+
+[tool.pylint.messages_control]
+# Ignore test code as pylint doesn't get along with pytest fixtures very well.
+# These patterns are applied per-file and cannot be applied to entire directories.
+ignore-patterns = "test.*,.*test,conftest.py"

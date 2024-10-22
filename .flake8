@@ -1,0 +1,26 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Highly Confidential Material
+
+[flake8]
+# Line length is 88 for compatibility with `black`.
+# This is not enforced (ignore=E501) to allow for exceptions.
+max-line-length = 88
+
+ignore =
+    # ___ Default ignores ___
+    E121,E123,E126,E226,E24,E704,W503,W504
+
+    # ___ Auto-formatting compatibility ___
+    # Whitespace before ':' | NOT PEP8 COMPLIANT
+    E203,
+    # Allow long lines if needed | BLACK HANDLES CODE FORMATTING
+    E501,
+    # One-line docstrings should fit on one line with quotes
+    D200,
+    # Multi-line docstring summary should start at the first line
+    D212,
+
+per-file-ignores =
+    # Don't worry about security issues or docstrings in test code
+    **/tests/*:S,D
+    tests/*:S,D
