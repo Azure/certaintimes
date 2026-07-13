@@ -33,7 +33,6 @@ pytest = "^8.0.0"
 pytest-subtests = "^0.13.0"
 coverage = "^7.0.0"
 pytest-cov = "^5.0.0"
-python-static-checks = "^4.0.0"
 mypy = "^1.0.0"
 poetryup = "^0.12.0"
 
